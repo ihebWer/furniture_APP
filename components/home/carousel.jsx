@@ -10,6 +10,8 @@ const Carousel = () => {
     "https://d326fntlu7tb1e.cloudfront.net/uploads/5d445b91-c01a-4564-8ff8-c27c2b88ea5b-fn7.png",
   ];
 
+  
+
   return (
     <View style={styles.carouselContainer}>
       <SliderBox

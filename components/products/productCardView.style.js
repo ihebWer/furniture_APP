@@ -1,25 +1,33 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { COLORS, SIZES } from "../../constants/index";
+
+const windowWidth = Dimensions.get('window').width;
+const cardWidth = windowWidth / 2 - (SIZES.small+22) ;
+
 
 const styles = StyleSheet.create({
   container:{
-    width: 182,
+    width: cardWidth,
     height: 240,
-    marginEnd:22,
+    marginEnd:19,
     borderRadius:SIZES.medium,
-    backgroundColor: COLORS.secondary
+    backgroundColor: COLORS.secondary,
+    
   },
   ImageContainer:{
-    flex: 1,
-    width: 170,
-    marginLeft: SIZES.small/2,
-    marginTop: SIZES.small/2,
+    // flex: 1,
+    height: 150,
+    width: 153,
+    // marginLeft: SIZES.small/2,
+    // marginTop: SIZES.small/2,
     borderRadius: SIZES.small,
     overflow: "hidden",
   },
 
   image:{
-    aspectRatio: 1,
+    width:"100%",
+    height:"100%",
+    // aspectRatio: 1,
     resizeMode: 'cover'
   },
 
@@ -29,7 +37,7 @@ const styles = StyleSheet.create({
 
   title:{
     fontFamily: "bold",
-    fontSize: SIZES.large,
+    fontSize: SIZES.small,
     marginBottom: 2,
   },
 

@@ -2,10 +2,20 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import BottomTabNavigation from "./navigation/BottomTabNavigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Cart, ProductDetails } from "./screens";
+import {
+  Cart,
+  ProductDetails,
+  NewRivals,
+  LoginPage,
+  Favourites,
+  Orders,
+  SignUp,
+} from "./screens";
+import React, { useEffect } from "react";
+import { UpdteCartContext } from "./context/updateCartContext";
 
 // Création d'un gestionnaire de pile de navigation (Stack Navigator) en utilisant la fonction createNativeStackNavigator.
 // Ce gestionnaire est utilisé pour permettre la navigation entre les écrans avec des transitions d'écran standard.
@@ -13,6 +23,8 @@ import { Cart, ProductDetails } from "./screens";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [updateCart, setUpdateCart] = useState(false);
+
   const [fontsLoaded] = useFonts({
     regular: require("./assets/fonts/Poppins-Regular.ttf"),
     light: require("./assets/fonts/Poppins-Light.ttf"),
@@ -36,27 +48,59 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Bottom Navigation"
-            component={BottomTabNavigation}
-            options={{ headerShown: false }}
-          />
+      <UpdteCartContext.Provider value={{ updateCart, setUpdateCart }}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Bottom Navigation"
+              component={BottomTabNavigation}
+              options={{ headerShown: false }}
+            />
 
-          <Stack.Screen
-            name="Cart"
-            component={Cart}
-            options={{ headerShown: false }}
-          />
+            <Stack.Screen
+              name="Cart"
+              component={Cart}
+              options={{ headerShown: false }}
+            />
 
-          <Stack.Screen
-            name="ProductDetails"
-            component={ProductDetails}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+            <Stack.Screen
+              name="ProductDetails"
+              component={ProductDetails}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="ProductList"
+              component={NewRivals}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="Login"
+              component={LoginPage}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="Orders"
+              component={Orders}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="Favourites"
+              component={Favourites}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="SignUp"
+              component={SignUp}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </UpdteCartContext.Provider>
     </GestureHandlerRootView>
   );
 }
