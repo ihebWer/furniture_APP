@@ -28,7 +28,7 @@ const Home = () => {
           </View>
         </View>
       </View>
-      <ScrollView >
+      <ScrollView>
         <Welcome />
         <Carousel />
         <Heading />
